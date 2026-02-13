@@ -17,6 +17,9 @@ venv/
 .DS_Store
 
 # Large datasets (keep local)
-**/data_release/*.csv
-**/data/*.csv
+notebooks/**/data**/
+notebooks/**/data_release**/
 *.csv
+*.parquet
+*.feather
+*.h5
