@@ -9,6 +9,10 @@ wheels/
 # Virtual environments
 .venv
 
+# Large datasets (keep local)
+**/data_release/*.csv
+**/data/*.csv
+*.csv
 
 # Jupyter checkpoints
 .ipynb_checkpoints/
