@@ -4,15 +4,11 @@ __pycache__/
 build/
 dist/
 wheels/
-*.egg-info
+*.egg-info/
 
 # Virtual environments
-.venv
-
-# Large datasets (keep local)
-**/data_release/*.csv
-**/data/*.csv
-*.csv
+.venv/
+venv/
 
 # Jupyter checkpoints
 .ipynb_checkpoints/
@@ -20,3 +16,7 @@ wheels/
 # Mac system files
 .DS_Store
 
+# Large datasets (keep local)
+**/data_release/*.csv
+**/data/*.csv
+*.csv
