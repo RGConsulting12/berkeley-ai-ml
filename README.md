@@ -9,5 +9,4 @@ This repository supports my learning journey through the UC Berkeley Executive E
 
 Notebooks were auto-generated using a custom script that parsed the course outline and programmatically created .ipynb files for efficient knowledge capture and version control. This structure allows for modular development, version tracking, and eventual integration of project artifacts, culminating in a final capstone deliverable — a production-ready app or website applying concepts learned throughout the course.
 
-⸻
-# Kinematic_Analysis_Berkeley
+___
