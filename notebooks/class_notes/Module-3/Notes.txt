@@ -1,0 +1,54 @@
+🔹 1. CRISP-DM (Cross-Industry Standard Process for Data Mining)
+	•	Sentiment:
+	•	Still the most cited and taught framework in textbooks, academic courses, and industry introductions.
+	•	Many companies use CRISP-DM as a conceptual backbone but customize it heavily.
+	•	Pros in sentiment: Seen as simple, flexible, and business-first.
+	•	Cons in sentiment: Often considered outdated because it doesn’t explicitly cover deployment, monitoring, or modern MLOps.
+	•	Popular sentiment: “Great for teaching and structure, but you’ll need more for real-world ML pipelines.”
+
+⸻
+
+🔹 2. OSEMN (Obtain, Scrub, Explore, Model, iNterpret)
+	•	Sentiment:
+	•	Popular in educational settings, bootcamps, and blog posts because it’s easy to remember.
+	•	Praised for emphasizing scrubbing/cleaning, which reflects reality (most time spent there).
+	•	Cons in sentiment: Too lightweight for enterprise use, lacks deployment/governance steps.
+	•	Popular sentiment: “Catchy and realistic for beginners, but not sufficient for production workflows.”
+
+⸻
+
+🔹 3. TDSP (Team Data Science Process – Microsoft)
+	•	Sentiment:
+	•	Favored in large organizations (especially Microsoft Azure users).
+	•	Praised for end-to-end lifecycle coverage (includes deployment, CI/CD, monitoring).
+	•	Stronger support for MLOps practices.
+	•	Cons in sentiment: Seen as process-heavy and sometimes too Microsoft-centric.
+	•	Popular sentiment: “Solid for enterprises, but feels like corporate overhead for smaller teams.”
+
+⸻
+
+🔹 4. Modern MLOps Lifecycles
+	•	Sentiment:
+	•	Increasingly dominant in practice: people focus less on formal frameworks and more on MLOps pipelines (data ingestion → training → deployment → monitoring → retraining).
+	•	Popular tools: MLflow, Kubeflow, Airflow, SageMaker, Vertex AI.
+	•	Pros in sentiment: Production-oriented, practical.
+	•	Cons in sentiment: Sometimes too tool-specific, lacking broader project governance.
+	•	Popular sentiment: “Where the field is heading — CRISP-DM is the skeleton, MLOps is the muscle.”
+
+⸻
+
+🔹 5. Academic & Practitioner Divide
+	•	Academia / training: CRISP-DM + OSEMN dominate (simple, teachable, conceptual).
+	•	Industry / enterprise: CRISP-DM is referenced, but TDSP or custom MLOps frameworks are actually used.
+	•	Startups / applied DS: OSEMN-like or lightweight “EDA-first” approaches are common, later replaced with MLOps practices as products scale.
+
+⸻
+
+📝 TL;DR
+	•	CRISP-DM → still the “default” teaching tool; respected but often called outdated.
+	•	OSEMN → loved for its simplicity and realism about data wrangling, but not production-ready.
+	•	TDSP → valued in enterprise/structured projects, but seen as heavy and tied to Microsoft.
+	•	MLOps pipelines → increasingly where practitioners put their energy; not a “framework” but the de facto lifecycle in production ML.
+
+👉 Popular sentiment today is:
+“Use CRISP-DM for structure, OSEMN for intuition, TDSP for enterprise rigor, and MLOps for actual deployment and monitoring.”

@@ -1,0 +1,10 @@
+Model,Training Time (s),Test Accuracy,Precision,Recall,F1-Score
+Decision Tree (default),0.0775,0.914,0.7092,0.6897,0.6993
+"Decision Tree (pruned, balanced)",0.0247,0.889,0.5859,0.8,0.6764
+"SVM (polynomial kernel d=3, balanced)",0.0863,0.893,0.6118,0.7172,0.6603
+"SVM (RBF kernel, balanced)",0.0877,0.875,0.55,0.7586,0.6377
+KNN (k=5),0.016,0.898,0.8413,0.3655,0.5096
+"SVM (linear kernel, balanced)",0.1282,0.757,0.3459,0.7586,0.4752
+Logistic Regression (balanced),0.0117,0.764,0.3498,0.731,0.4732
+"KNN (k=7, distance weighted)",0.0058,0.892,0.8491,0.3103,0.4545
+Logistic Regression (default),0.0976,0.864,0.5714,0.2483,0.3462

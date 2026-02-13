@@ -1,0 +1,858 @@
+WEBVTT
+
+1
+00:00:08.450 --> 00:00:14.220
+Webinar Support: Okay, let me just confirm everything is working as expected.
+
+2
+00:00:26.180 --> 00:00:27.680
+Webinar Support: Okay, so…
+
+3
+00:00:28.060 --> 00:00:39.959
+Webinar Support: Today's module is on, feature engineering, and we'll also discuss feature engineering as it relates to large language models, because I think it's interesting
+
+4
+00:00:40.200 --> 00:00:45.299
+Webinar Support: And it will certainly help you, start to navigate your way around generative AI.
+
+5
+00:00:45.630 --> 00:00:55.990
+Webinar Support: So… Last module, or specifically module 6, we discussed feature engineering as it relates to scaling.
+
+6
+00:00:56.290 --> 00:01:00.699
+Webinar Support: So let's quickly go there and refresh our… our memory.
+
+7
+00:01:02.980 --> 00:01:11.930
+Webinar Support: And then the example that we use for feature engineering is that we scaled, numeric data. And the way to think about
+
+8
+00:01:13.000 --> 00:01:16.030
+Webinar Support: Feature engineering as kind of a rule of thumb.
+
+9
+00:01:16.510 --> 00:01:21.319
+Webinar Support: is what… Scaling is too numeric.
+
+10
+00:01:21.500 --> 00:01:35.049
+Webinar Support: data is what encoding is to text data. So if you kind of… as a general rule of thumb, if you think of it in that way, it will certainly make things a little bit easier to, to follow.
+
+11
+00:01:35.360 --> 00:01:46.760
+Webinar Support: So, in the last example, we looked at, feature engineering for the purposes of creating a feature, out of a PCA, component.
+
+12
+00:01:47.090 --> 00:01:56.589
+Webinar Support: And prior to that, we also scaled the data, for PCA to be able to, fit and train, on that data set.
+
+13
+00:01:56.950 --> 00:02:01.609
+Webinar Support: So if you see here, we prepared the,
+
+14
+00:02:01.920 --> 00:02:09.560
+Webinar Support: Date time into… we changed the data types, we separated out the data types, the date…
+
+15
+00:02:09.560 --> 00:02:22.439
+Webinar Support: I should say, into multiple features, which is very common, particularly in things like time series as well, where there's information present even within the date itself, whether it be the year, month, and day, and that can help for things like seasonality.
+
+16
+00:02:22.770 --> 00:02:29.699
+Webinar Support: We, we go to the scale section for a minute,
+
+17
+00:02:30.370 --> 00:02:41.610
+Webinar Support: you can see that we used a standard scalar, which is, very common, again, for numeric data. Standard scalar is probably something you use 9 times out of 10.
+
+18
+00:02:42.000 --> 00:03:00.089
+Webinar Support: Which is a fairly generic form of, scaling, and, you should always, certainly in PCA, think about scaling, data, but generally speaking, it doesn't really hurt any model if you always have the habit of, scaling, numeric data.
+
+19
+00:03:00.350 --> 00:03:03.859
+Webinar Support: And the reason being you have to do these things is,
+
+20
+00:03:04.500 --> 00:03:17.160
+Webinar Support: As we see on the screen here, you have measurements or features for potentially different units, so you could have kilograms, you could have kilometers, and you don't want to have the magnitude of those features
+
+21
+00:03:17.160 --> 00:03:31.940
+Webinar Support: or those values potentially impacting, the model itself. So, get into the habit of always scaling, and, certainly, standard scaler is one approach, and is a very common approach for,
+
+22
+00:03:32.120 --> 00:03:36.540
+Webinar Support: the scaling data. As you can see with,
+
+23
+00:03:37.310 --> 00:03:51.910
+Webinar Support: with what we did here is then, essentially, by scaling that data, and then with running PCA, later on, we actually create, our own features. And that's what featured engineering essentially is, is creating new features, out of existing features.
+
+24
+00:03:51.910 --> 00:04:04.040
+Webinar Support: Those features are, generally speaking, explicit, which is to say we know what we are looking for, and we are specifically trying to identify that. The example being a good one earlier about the date and time.
+
+25
+00:04:05.090 --> 00:04:10.590
+Webinar Support: So… As a kind of rehash,
+
+26
+00:04:11.040 --> 00:04:13.600
+Webinar Support: For what data is to,
+
+27
+00:04:13.940 --> 00:04:17.410
+Webinar Support: Text data, is for encoding.
+
+28
+00:04:18.220 --> 00:04:36.830
+Webinar Support: numeric data is for scaling. So, in this example, you can certainly go through the different notebooks, and all of them are self-sufficient, and all of them have, multiple learnings to gather, so you can always go back to them and pick up on the feature engineering we did, you know, in Module 3, or sorry, Module 4.
+
+29
+00:04:36.830 --> 00:04:40.649
+Webinar Support: And… and so on. So the idea is that you see them in their full
+
+30
+00:04:40.650 --> 00:04:44.929
+Webinar Support: Application, versus, just seeing them in isolation.
+
+31
+00:04:45.150 --> 00:04:50.100
+Webinar Support: And not necessarily knowing how to apply them in different situations. So,
+
+32
+00:04:50.650 --> 00:05:00.169
+Webinar Support: In encoding, there are two common ways to encode text data. One of them is
+
+33
+00:05:00.550 --> 00:05:04.130
+Webinar Support: Ordinal encoding, and the other one is one-hot encoding.
+
+34
+00:05:04.800 --> 00:05:12.180
+Webinar Support: And this will segue into, how we encode data for LLMs as well. So, let's get started on this.
+
+35
+00:05:12.340 --> 00:05:16.740
+Webinar Support: Ordinal encoding, well, as I say, let's… what are we going to encode? So we're going to choose some text data.
+
+36
+00:05:17.270 --> 00:05:26.310
+Webinar Support: And the sentence we've created is, I love everything involving AI and machine learning, and love the University of California, Berkeley.
+
+37
+00:05:27.680 --> 00:05:37.539
+Webinar Support: So in order to create that into, I guess, their own features, we first split these into words, and we create a data frame, with the column.
+
+38
+00:05:37.650 --> 00:05:55.110
+Webinar Support: Of all of the words in that column, and that just makes it easier, as we scale down here, to see how we're actually applying, different encoding techniques. In this case, order encoder is all about the order. The order matters. As you can see here.
+
+39
+00:05:55.350 --> 00:06:03.719
+Webinar Support: The order of each one of these features is purely in the sequential order that it appears in the sentence from left to right as you'd normally read it.
+
+40
+00:06:04.010 --> 00:06:13.320
+Webinar Support: And order encoding is exactly that. It's something that you do with text, or category data, when the order matters.
+
+41
+00:06:13.330 --> 00:06:27.309
+Webinar Support: Use cases are typically things like in products, when something is small, medium, and large, and inherently that is material. You can have it where you have bucketed data.
+
+42
+00:06:27.310 --> 00:06:37.410
+Webinar Support: Such as, age range, where potentially the age, matters, in some cases. In some cases it doesn't at all, and it's just… it's regular one-hot encoding.
+
+43
+00:06:37.790 --> 00:06:48.539
+Webinar Support: Or in other cases, it hasn't been bucketed, and you would then scale. So there isn't always a one-size-fits-all, you just need to be aware of the different techniques, that are available.
+
+44
+00:06:48.860 --> 00:06:55.150
+Webinar Support: So, borderline coding, to summarize, you apply it to categorical features?
+
+45
+00:06:55.850 --> 00:07:01.589
+Webinar Support: The output is a single integer, and these are used for features with inherent order.
+
+46
+00:07:02.420 --> 00:07:18.909
+Webinar Support: As you can see here, very simple, and when you're using some of these different libraries, you can see that to, create that is… or initiate that, is a very simple one line, and you can, transform it similarly in one line. So, not a lot of…
+
+47
+00:07:19.110 --> 00:07:34.019
+Webinar Support: coding complexity to consider here, but you should be more concerned and spend your time around what is the appropriate encoding versus the actual code requirement itself. And that is also a function of not only the data, but the model you intend to use.
+
+48
+00:07:35.130 --> 00:07:43.210
+Webinar Support: Now, moving to, one-hot coding, this is where we, don't have any particular order.
+
+49
+00:07:43.350 --> 00:07:49.839
+Webinar Support: And, all of the categories within that data are as important as the other one.
+
+50
+00:07:50.200 --> 00:07:56.080
+Webinar Support: You can see here, to actually visualize what happens, is…
+
+51
+00:07:56.180 --> 00:08:00.500
+Webinar Support: Every single one of them, every single unique
+
+52
+00:08:00.600 --> 00:08:07.459
+Webinar Support: feature. In our case, we have words as individual meaning features. Every single one of them has created a new column.
+
+53
+00:08:07.760 --> 00:08:14.150
+Webinar Support: Now, this is a good way to see and just kind of visualize what's happening here. If you read from
+
+54
+00:08:14.480 --> 00:08:21.020
+Webinar Support: left to right now, as your columns, you can see that it says, I love everything involving AI,
+
+55
+00:08:21.080 --> 00:08:38.129
+Webinar Support: and machine learning, the University of California, Berkeley. Now, if you read down the bottom… on the left-hand column, you'll see that between, machine learning and the University of California, Berkeley was the word AND. Now, it doesn't appear in the columns because it is not
+
+56
+00:08:38.150 --> 00:08:50.639
+Webinar Support: repeated, because it has already been captured in the column feature for the word AND. So if we scroll down here, you'll see that every word that appeared once
+
+57
+00:08:50.810 --> 00:09:06.469
+Webinar Support: you'll see that it hits as, as a binary entry, it has a 1, and you see that love and love has appeared twice. So, I said… we said, I love everything involving AI and machine learning, and love the University of California.
+
+58
+00:09:06.840 --> 00:09:14.559
+Webinar Support: If you scroll across, you will see that love only appears, once at the front, and it's captured twice in the column.
+
+59
+00:09:14.860 --> 00:09:18.750
+Webinar Support: So each time that feature appears in one hot encoding.
+
+60
+00:09:18.750 --> 00:09:38.429
+Webinar Support: it is captured within that one column. And you can see that it's quite sparse, and it's one of the cons of one hard encoding. Depending on how many unique features you have, your datasets can potentially explode. And that is one of the trade-offs, but also it is one of the,
+
+61
+00:09:38.680 --> 00:09:50.079
+Webinar Support: Benefit of being able to clearly see that each feature is given a unique, each word is being created in a unique feature, and that you can identify that very easily in a visual like this.
+
+62
+00:09:51.410 --> 00:10:02.700
+Webinar Support: Now, as I mentioned, it can get quite sparse, and, there are different ways to kind of handle that, and one of them would be, rather than just,
+
+63
+00:10:02.700 --> 00:10:13.870
+Webinar Support: Treat all features as, unique and the same, that you potentially could categorize that feature, and then one-hot encode, that category instead.
+
+64
+00:10:13.900 --> 00:10:17.709
+Webinar Support: So there are many different ways to categorize text data.
+
+65
+00:10:17.980 --> 00:10:27.679
+Webinar Support: I wanted to show you one of them, and you'll cover this more, no doubt, in natural language processing. But in this example, we'll use a library called spaCy, which is very popular.
+
+66
+00:10:27.860 --> 00:10:32.800
+Webinar Support: library for NLP, which is Natural Language Processing with Python.
+
+67
+00:10:32.960 --> 00:10:36.299
+Webinar Support: And I provided some guidance here of when to install.
+
+68
+00:10:36.310 --> 00:10:53.499
+Webinar Support: spacey, if you choose to do this on your local device. But essentially what we're going to do is we're going to categorize each word by the part of speech, which is to say, is it a verb? Is it a noun? Is it a pronoun? Is it an adjective? And we'll run…
+
+69
+00:10:53.630 --> 00:10:59.179
+Webinar Support: Spacey, which will essentially identify and label each one of these words.
+
+70
+00:10:59.510 --> 00:11:16.349
+Webinar Support: Based on heuristic rules and, its own internal algorithms, so that instead of having words, you can see that we have run this, we've identified, we've gone through the same thing, we've created one hot encoding.
+
+71
+00:11:16.550 --> 00:11:34.410
+Webinar Support: But what we've done previously up here is we have, labeled instead of the word as columns, we've actually labeled the, part of speech, POS, as you'll see, it's a very common acronym to explain part of speech. And so what you see now is we've captured
+
+72
+00:11:34.750 --> 00:11:37.500
+Webinar Support: Exactly, we've labeled what the,
+
+73
+00:11:38.480 --> 00:11:54.840
+Webinar Support: the part of speech has been captured, and so that you can follow along very easily. And then you can see to your right now that we only have 7, columns, and, each one of those represents the part of speech, so we have pronoun, verb, proposition.
+
+74
+00:11:55.130 --> 00:11:58.830
+Webinar Support: conjunction, a noun.
+
+75
+00:11:59.150 --> 00:12:03.789
+Webinar Support: a… I don't know what that one means. And
+
+76
+00:12:04.290 --> 00:12:15.300
+Webinar Support: And similarly, I think an adverb, pronoun, perhaps, but the idea is that you can, we'll go through this in more detail in NLP, but you can see here that you've now
+
+77
+00:12:15.300 --> 00:12:29.690
+Webinar Support: categorize those features, and then one hot encoder on top of that. So, a bit advanced, but more I wanted to show you how you would actually, potentially go about this in real life, and how you would combine multiple techniques when it comes to feature engineering.
+
+78
+00:12:30.690 --> 00:12:38.110
+Webinar Support: Okay, so we've covered… Previously scaling, with numeric data.
+
+79
+00:12:38.210 --> 00:12:42.199
+Webinar Support: We've talked about, encoding for text data.
+
+80
+00:12:42.490 --> 00:12:51.339
+Webinar Support: And we've covered ordinal encoding, one hard encoding, and then an advanced one-hot encoding scenario with categorizing the features first.
+
+81
+00:12:53.050 --> 00:13:08.090
+Webinar Support: If we move now to LLMs, one of the things I'm sure that you're all using with generative AI, whether it be ChatGPT or Claude, Anthropic, is that you are entering text data all the time.
+
+82
+00:13:08.490 --> 00:13:11.510
+Webinar Support: So, are they doing one-hot encoding?
+
+83
+00:13:11.680 --> 00:13:18.790
+Webinar Support: Are they doing, all encoding? The answer is, is no, but it is similar.
+
+84
+00:13:18.940 --> 00:13:34.519
+Webinar Support: it is encoding, and we'll go through in a little bit more detail what it is. The key thing that I want to take away from the first kind of primary difference between generative AI encoding and, machine learning encoding
+
+85
+00:13:34.770 --> 00:13:40.790
+Webinar Support: Is that when we identify features like we've done up here, we are explicitly saying.
+
+86
+00:13:41.290 --> 00:13:50.240
+Webinar Support: We know what feature is important, and we would like you to, categorize by part of speech.
+
+87
+00:13:50.680 --> 00:14:07.470
+Webinar Support: In large language models, that activity is actually done by, the transformer model, the transformer layers themselves, and that is to say, they implicitly identify what features are important, and we don't have to do that as a preparatory step. They do that. So.
+
+88
+00:14:07.790 --> 00:14:12.000
+Webinar Support: How do they do that, and how do we need to be aware of it from an encoding perspective?
+
+89
+00:14:12.300 --> 00:14:17.069
+Webinar Support: Well, I've got a few diagrams here to show you, but,
+
+90
+00:14:17.200 --> 00:14:20.020
+Webinar Support: The main one here is,
+
+91
+00:14:20.960 --> 00:14:24.319
+Webinar Support: this one here. So, on the right-hand side, we have the traditional
+
+92
+00:14:24.740 --> 00:14:30.019
+Webinar Support: machine learning pipeline, and on the left-hand side, we'll go through the LLM pipeline. So…
+
+93
+00:14:30.550 --> 00:14:35.569
+Webinar Support: As we've done in earlier modules, we'll go down on the right, you'll see that we have the data preparation.
+
+94
+00:14:35.910 --> 00:14:38.949
+Webinar Support: That's data cleaning and laving, etc.
+
+95
+00:14:39.420 --> 00:14:54.809
+Webinar Support: In large language models, we also do the same thing. In their case, when, typically receiving data for training, we're talking about training for a moment, not inference, which is what you do when you, work with ChatGPT,
+
+96
+00:14:55.030 --> 00:14:56.530
+Webinar Support: On a day-to-day basis.
+
+97
+00:14:57.990 --> 00:15:11.260
+Webinar Support: In training, that data is prepared and is separated into chunk sizes that it can actually work with. Now, in LLMs, it's in a JSON list.
+
+98
+00:15:11.400 --> 00:15:17.229
+Webinar Support: And, typically when we work with, machine learning models, it's in a data frame.
+
+99
+00:15:17.700 --> 00:15:27.609
+Webinar Support: standards data frame. So, again, a similar step, but a slightly different process, and but nonetheless, kind of fairly consistent.
+
+100
+00:15:28.190 --> 00:15:35.949
+Webinar Support: Now, on the right-hand side, you'll see that when we do feature engineering, we've talked about it as being explicit and human-defined, which is to say, we've decided
+
+101
+00:15:36.100 --> 00:15:38.550
+Webinar Support: Like I said earlier, we want to do ordinal encoding.
+
+102
+00:15:38.970 --> 00:15:49.849
+Webinar Support: Or we've decided we wanted to do one-pot encoding, or we've seen it as numeric data, and we've decided we want to use standard scaling or min-max scaling. It really just depends on the different use cases.
+
+103
+00:15:50.040 --> 00:15:57.499
+Webinar Support: The process with, I mentioned the encoding, autoencoding, and then we train
+
+104
+00:15:57.900 --> 00:16:12.820
+Webinar Support: the model saying, hey, these are the features that matter in machine learning. So, whether regression or classification, we're saying, hey, these are the features, we've prepared it for you, you now tell us the patterns based on these features that we've given.
+
+105
+00:16:14.900 --> 00:16:25.800
+Webinar Support: In large language models, after you've prepared the data, it does go through an encoding process. The encoding process is it takes every word
+
+106
+00:16:26.100 --> 00:16:36.880
+Webinar Support: And it splits that into sub-words, essentially. And, we'll go through this in a great detail, but I just wanted to show you this diagram very quickly. And each of these subwords
+
+107
+00:16:37.310 --> 00:16:40.760
+Webinar Support: Is then mapped to a…
+
+108
+00:16:40.790 --> 00:16:54.399
+Webinar Support: unique identifier, which we call a token ID. So each one of these subwords, or very small words, we refer to as a token in language models, and we take that token
+
+109
+00:16:54.400 --> 00:16:59.300
+Webinar Support: We take it to a lookup table and say, hey, what is the unique identifier for this token ID?
+
+110
+00:16:59.300 --> 00:17:20.479
+Webinar Support: And we get sent back a unique identifier. Now, these identifiers, you can imagine the different combinations, etc, involved. There are… can be, hundreds or thousands of different combinations. But these are what, essentially, a large language model does, is it takes these token IDs, and then it sends it to another lookup table.
+
+111
+00:17:20.859 --> 00:17:24.600
+Webinar Support: And that lookup table says, hey, here's my token ID,
+
+112
+00:17:24.650 --> 00:17:30.809
+Webinar Support: And, can you show me the embedding vector for this token ID? And the embedding vector is what the machine learning
+
+113
+00:17:30.860 --> 00:17:50.610
+Webinar Support: sorry, the LLMs actually use. This represents all of the different implicit features and relationships, that it has identified in training, and then it will continue to update during training for that specific token to get a sense of its meaning relative to the rest of the,
+
+114
+00:17:51.160 --> 00:17:57.779
+Webinar Support: text that has been provided for training. So again, the key idea with this visual is that
+
+115
+00:17:57.990 --> 00:18:05.970
+Webinar Support: It's very similar, but different. We do have data preparation, we do have encoding, And…
+
+116
+00:18:06.470 --> 00:18:19.479
+Webinar Support: the slight nuance with LLMs is, after encoding, it gets almost encoded a second time. In this case, it gets encoded into an embedding vector, and it's the embedding vector
+
+117
+00:18:19.480 --> 00:18:26.709
+Webinar Support: That, the models use to learn new features. In our current process, we encode it once.
+
+118
+00:18:26.820 --> 00:18:31.829
+Webinar Support: And explicitly tell the models what features to, identify.
+
+119
+00:18:32.280 --> 00:18:33.880
+Webinar Support: So if we go back to the
+
+120
+00:18:34.160 --> 00:18:37.320
+Webinar Support: Slide itself, again, the notebook.
+
+121
+00:18:40.220 --> 00:18:44.000
+Webinar Support: And scroll back down here…
+
+122
+00:18:44.480 --> 00:18:52.340
+Webinar Support: We'll just summarize here with the parts that have italicized. So, LLMs begin by converting raw text into token IDs.
+
+123
+00:18:52.540 --> 00:18:55.849
+Webinar Support: Before the model learns any features or relationships between them.
+
+124
+00:18:56.740 --> 00:19:13.619
+Webinar Support: And I put on top of here, in other words, traditional… traditional machine learning, you as the, data scientist, you engineer the latent feature. We've talked about latent features in PCA, but essentially, you,
+
+125
+00:19:14.010 --> 00:19:17.639
+Webinar Support: Are explicitly saying these are the features that are… that matter.
+
+126
+00:19:17.770 --> 00:19:31.739
+Webinar Support: In LLMs, the model takes all of the data, and it discovers implicitly, through training, what features it thinks matters. Latent is just a term for hidden,
+
+127
+00:19:31.880 --> 00:19:44.079
+Webinar Support: And in this case, what models LLMs learn isn't necessarily what you and I consider features. It learns it in a very different dimensional world, so it doesn't learn things around…
+
+128
+00:19:44.300 --> 00:19:52.809
+Webinar Support: verbs, or animals, or dogs, it learns relationships between tokens that just so happen to
+
+129
+00:19:53.080 --> 00:20:04.009
+Webinar Support: Cluster together to form the word dog, which just so happens to cluster together nearest another set of tokens, that is puppy and pet, and so on and so forth.
+
+130
+00:20:04.420 --> 00:20:07.589
+Webinar Support: In,
+
+131
+00:20:08.130 --> 00:20:21.200
+Webinar Support: machine learning, I've said this a couple of times now, we just say that we are explicit in identifying what we want to use for training before we, encode, and in LLMs, we provide LLMs being
+
+132
+00:20:21.250 --> 00:20:32.950
+Webinar Support: decoders, we essentially provide them an encoded version, of token IDs that the model then, looks up and converts into embedding vectors.
+
+133
+00:20:33.380 --> 00:20:46.620
+Webinar Support: This is a process here, and in our example, we're actually going to create a tokenizer, so you can just see how that actually works. And the process is pretty simple. We will, collect
+
+134
+00:20:46.740 --> 00:20:57.540
+Webinar Support: some data, which we will call the corpus. So the corpus is, in other words, a representation of all the possible tokens that might exist in the world.
+
+135
+00:20:57.880 --> 00:21:06.460
+Webinar Support: And in our case, we're gonna pull from this… Website, and if you… Check out the…
+
+136
+00:21:07.070 --> 00:21:09.240
+Webinar Support: The website?
+
+137
+00:21:09.950 --> 00:21:15.210
+Webinar Support: You'll see that, it's the, certificate, website.
+
+138
+00:21:15.490 --> 00:21:23.320
+Webinar Support: And we've got all the text here, and all this information. So we're gonna pull this data, and we're gonna say this is…
+
+139
+00:21:23.450 --> 00:21:24.850
+Webinar Support: Create tokens.
+
+140
+00:21:24.990 --> 00:21:27.280
+Webinar Support: From this entire corpus.
+
+141
+00:21:27.750 --> 00:21:46.290
+Webinar Support: And this is our world. If there's a word in here, or a token that doesn't exist, then our sentence won't actually return a token for that particular subword, it will return anything. But the key thing to note here is that when you create subwords versus words, all of a sudden.
+
+142
+00:21:46.410 --> 00:21:54.979
+Webinar Support: you can, actually match more than what is in your dataset. So, if you take, if I'm looking at the screen right now, you see that
+
+143
+00:21:55.110 --> 00:21:57.120
+Webinar Support: There is the word engineering.
+
+144
+00:21:57.600 --> 00:21:59.710
+Webinar Support: And it ends in ING.
+
+145
+00:21:59.850 --> 00:22:01.649
+Webinar Support: Now, if that was a token.
+
+146
+00:22:02.470 --> 00:22:08.440
+Webinar Support: you would only need to create that once, and if we look for another word that has ING in it.
+
+147
+00:22:10.900 --> 00:22:19.200
+Webinar Support: we have including, you'll see that, in fact, that won't actually… we don't need to see the word engineering.
+
+148
+00:22:22.140 --> 00:22:33.909
+Webinar Support: if it appears in our text, or it didn't appear on our text, I should say, because we already have ING, and so we actually only need to find ENG and perhaps INEER,
+
+149
+00:22:33.910 --> 00:22:49.069
+Webinar Support: And those maybe make up 3 tokens or 4 tokens, and if they are in a combination on this page, then it doesn't matter that the model hasn't seen, or the tokenizer hasn't seen that word before. It is actually able to create tokens anyway.
+
+150
+00:22:49.900 --> 00:22:52.419
+Webinar Support: So let's go back and see this in action.
+
+151
+00:22:56.770 --> 00:23:10.299
+Webinar Support: And so, here we go, encoding, we've created a, we're creating an encoder right now. So, this is what it says here. The process is called tokenization. The encoding,
+
+152
+00:23:10.530 --> 00:23:17.110
+Webinar Support: We don't talk about ordinal encoding, on-hot encoding. The most common encoding method is byte pair encoding.
+
+153
+00:23:17.640 --> 00:23:19.389
+Webinar Support: And the processes.
+
+154
+00:23:19.600 --> 00:23:34.439
+Webinar Support: that this algorithm identifies the most frequent combination of characters, goes through kind of a looped process, and this is a process for feature extraction. It identifies the most frequent, the most important combinations, and it adds
+
+155
+00:23:34.520 --> 00:23:39.690
+Webinar Support: That to its, extracts, and open as it to its dictionary, if you can think of it.
+
+156
+00:23:40.050 --> 00:23:49.319
+Webinar Support: And After the process is done, and it's captured all of the different, combinations by, importance.
+
+157
+00:23:49.600 --> 00:24:06.119
+Webinar Support: and it's got a complete map of the corpus, then it creates a, associated token ID, in this dictionary, and so now you have a token ID representing each unique subword in your corpus or text.
+
+158
+00:24:06.410 --> 00:24:07.899
+Webinar Support: And that's feature engineering.
+
+159
+00:24:08.020 --> 00:24:14.619
+Webinar Support: So, important to cover that. We could have this conversation when it comes to computer vision, or… or,
+
+160
+00:24:15.070 --> 00:24:28.489
+Webinar Support: Audio, it is the same process across the whole… all the different, mediums for, for model training. The, the names and the algorithms are different.
+
+161
+00:24:28.910 --> 00:24:33.860
+Webinar Support: That's all. The process is always the same. You always need to prepare.
+
+162
+00:24:34.000 --> 00:24:44.389
+Webinar Support: the data in a form that the model can use. And so that's feature engineering, and sometimes we do that by extracting information and encode it once or twice.
+
+163
+00:24:45.120 --> 00:24:49.959
+Webinar Support: So… We've now, captured the data, our corpus.
+
+164
+00:24:50.370 --> 00:24:59.390
+Webinar Support: We've, just cleaned up the corpus very quickly, and we've, loaded up the encoding algorithm, which we're gonna call Tokenizer.
+
+165
+00:25:00.260 --> 00:25:09.100
+Webinar Support: We're using the BPE Trainer. This is, I think from… from Hugging Face, I'll have to remind myself. All the libraries are at the top up here.
+
+166
+00:25:10.030 --> 00:25:16.109
+Webinar Support: Tokenizer, okay. I think Tokenizer is probably a Hugging Face library, if you're not familiar.
+
+167
+00:25:18.140 --> 00:25:22.779
+Webinar Support: And, we then train the model on our dataset.
+
+168
+00:25:22.980 --> 00:25:26.170
+Webinar Support: And it's in the raw file, which you can see up here.
+
+169
+00:25:26.860 --> 00:25:33.100
+Webinar Support: Alright, so the final vocabulary. We've now created a vocabulary from our,
+
+170
+00:25:33.490 --> 00:25:44.909
+Webinar Support: Our corpus. And, you can see that we have a vocabulary size of 1,667, and if we look at some of the,
+
+171
+00:25:45.110 --> 00:25:48.350
+Webinar Support: items, you can see that we have a token ID.
+
+172
+00:25:48.650 --> 00:25:52.910
+Webinar Support: Of… 1080 for Oaking.
+
+173
+00:25:53.030 --> 00:26:02.799
+Webinar Support: I have 14502, sorry, 1452 for email. So you'll notice that, email is a word, and we've actually captured that as a token.
+
+174
+00:26:03.290 --> 00:26:18.519
+Webinar Support: We're starting to see that progression in a lot of the new tokenizers as they become more powerful, and as they identify errors that we start to make as humans, they actually, start to add more and more words specific to handle, those potential issues.
+
+175
+00:26:18.880 --> 00:26:26.230
+Webinar Support: We can now bring it all together and show you what they all look like. One-hot encoding.
+
+176
+00:26:26.490 --> 00:26:37.240
+Webinar Support: Using categorization, autoencoding, and also LLM encoding through tokenizers. And here we have it. And I'll let you go through this, obviously, in your own time.
+
+177
+00:26:37.520 --> 00:26:43.109
+Webinar Support: You can follow along. So we have our sentence, I love everything involving AI and machine learning.
+
+178
+00:26:43.260 --> 00:26:49.249
+Webinar Support: And love the University of. I don't know why it's dropped California in here. But,
+
+179
+00:26:49.600 --> 00:26:55.880
+Webinar Support: you can see here, now we have token IDs, so you can see that in our tokenizer.
+
+180
+00:26:56.230 --> 00:27:00.760
+Webinar Support: It has a token for, one letter.
+
+181
+00:27:01.160 --> 00:27:12.279
+Webinar Support: Which is 39. And by the way, the first 265, I think it is, tokens of any tokenizer, are all, the, ASIC
+
+182
+00:27:12.530 --> 00:27:19.189
+Webinar Support: not ASIC, sorry, that's a different acronym. I think I've captured it all up here. It's,
+
+183
+00:27:19.460 --> 00:27:21.460
+Webinar Support: What's the specific term?
+
+184
+00:27:22.190 --> 00:27:23.880
+Webinar Support: What did I capture on here?
+
+185
+00:27:31.100 --> 00:27:36.119
+Webinar Support: Yeah, the first 256 or so are,
+
+186
+00:27:37.480 --> 00:27:42.350
+Webinar Support: Always there's special characters and, and single letters.
+
+187
+00:27:42.660 --> 00:27:54.029
+Webinar Support: I'll remind myself if I put a comment in here as to actually what that is, what those are. But you can see that you've got different tokenizers now, so everything has 4 token IDs.
+
+188
+00:27:54.260 --> 00:28:13.930
+Webinar Support: Involving has 3 token IDs. What's interesting is that you can see that even though they have ING at the end, they don't share this token. So in this case, this tokenizer has created something, more than that, and we can probably detect… see here, learning has 1 token ID.
+
+189
+00:28:14.350 --> 00:28:22.300
+Webinar Support: And has, the token ID. And you can see, you can check again, you've got token ID for AND is 96,
+
+190
+00:28:22.850 --> 00:28:40.899
+Webinar Support: And it's the same thing. So every single one of these, words is… has been separated into subwords. In the case of AND, it has been determined that it is itself its own token, and you can see it appears here, 96. Love is the same, 137, 114, and the same up here as well.
+
+191
+00:28:41.670 --> 00:28:49.250
+Webinar Support: And you could probably find some pattern to determine, if you wanted to, specifically which ones. Yeah, you can look up the token IDs as well.
+
+192
+00:28:49.480 --> 00:28:55.130
+Webinar Support: You can see now you have 3 different ways to encode the same, text data.
+
+193
+00:28:56.650 --> 00:29:16.259
+Webinar Support: The cool thing, as I mentioned about this is, unlike, sometimes in traditional machine learning models, where you actually need to have the data, in the training data in order for it to kind of work as expected in production, you can very clearly see that, the word involving
+
+194
+00:29:16.430 --> 00:29:19.590
+Webinar Support: That is in our original sentence.
+
+195
+00:29:20.780 --> 00:29:25.469
+Webinar Support: If you actually look at that website, you'll find that involving does not exist on that page.
+
+196
+00:29:25.700 --> 00:29:41.300
+Webinar Support: So, even though it has never seen it before, it was able to tokenize it. And that's what makes LLM so very powerful. In the first instance, is they're able to make sense of the data, even when the data's unseen in,
+
+197
+00:29:41.550 --> 00:29:45.720
+Webinar Support: Inference. And this is the example of involving
+
+198
+00:29:46.060 --> 00:29:48.870
+Webinar Support: INV appeared 8 times in the corpus.
+
+199
+00:29:49.090 --> 00:29:50.739
+Webinar Support: And the word invite.
+
+200
+00:29:51.420 --> 00:29:54.940
+Webinar Support: as an example invite, and so that got in toque.
+
+201
+00:29:55.100 --> 00:29:57.039
+Webinar Support: Appeared as token ID 83.
+
+202
+00:29:57.240 --> 00:30:06.320
+Webinar Support: OLV appeared 6 times, and ING appeared 152 times. And, in this example with,
+
+203
+00:30:07.090 --> 00:30:15.510
+Webinar Support: Involving, we can see that actually, in this case, then, what we're saying is, is ING was targeted here, but in everything.
+
+204
+00:30:15.510 --> 00:30:29.329
+Webinar Support: Most likely HING or THING has been, tokenized, because that was more relevant at that case. So it's interesting, you can always go back and have a look, but this is essentially, encoding.
+
+205
+00:30:29.330 --> 00:30:32.489
+Webinar Support: There's a image you can have a look at in here.
+
+206
+00:30:33.060 --> 00:30:45.930
+Webinar Support: That captures the tokenizer process, if you want to reflect on this. We've gone through predator text corpus. The encoding algorithm, was byte bit… by pair encoding.
+
+207
+00:30:46.200 --> 00:30:50.519
+Webinar Support: There are others, or the biparent coding is certainly the most common one at the moment.
+
+208
+00:30:50.650 --> 00:30:53.439
+Webinar Support: I mentioned the first…
+
+209
+00:30:53.580 --> 00:31:08.560
+Webinar Support: Initial vocabulary size is already 256. Through the byte pair encoding, it identifies frequent pairs, it merges these frequent pairs, creates a new token, and it continues that process.
+
+210
+00:31:09.090 --> 00:31:12.819
+Webinar Support: And on and on it goes, and then during feature engineering.
+
+211
+00:31:13.350 --> 00:31:21.440
+Webinar Support: it replaces the original token with a token ID, and it repeats this merging. And that's how LLMs create,
+
+212
+00:31:21.940 --> 00:31:24.459
+Webinar Support: That's how LMs start their trading process.
+
+213
+00:31:24.840 --> 00:31:28.800
+Webinar Support: Encoding into tokens, and then tokens into embedding characters.
+
+214
+00:31:28.990 --> 00:31:30.840
+Webinar Support: Alright, great, thank you.
+

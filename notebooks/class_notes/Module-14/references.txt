@@ -1,0 +1,5 @@
+Navlani, Avinash. Decision Tree Classification in Python Tutorial. Datacamp. Last modified June 2024. https://www.datacamp.com/tutorial/decision-tree-classification-python Links to an external site..
+
+Scikit-Learn. “DecisionTreeClassifier.” Accessed July 16, 2024. https://scikit-learn.org/stable/modules/generated/sklearn.tree.DecisionTreeClassifier.html Links to an external site..
+
+Scikit-Learn. “Export_graphviz.” Accessed July 16, 2024. https://scikit-learn.org/stable/modules/generated/sklearn.tree.export_graphviz.html

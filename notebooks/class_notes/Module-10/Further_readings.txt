@@ -1,0 +1,7 @@
+Time Series Analysis and Forecasting. Last modified April 1, 2024. https://www.geeksforgeeks.org/time-series-analysis-and-forecasting/ Links to an external site..
+
+
+Peixeiro, Marco. “The Complete Guide to Time Series Analysis and Forecasting.” BuiltIn. Last modified August 1, 2023. https://builtin.com/data-science/time-series-model Links to an external site..
+
+
+Yu, Fangyi. “A Thorough Guide to Time Series Analysis.” Towards Data Science. Last modified July 29, 2021. https://towardsdatascience.com/a-thorough-guide-to-time-series-analysis-5439c63bc9c5 Links to an external site..

@@ -1,0 +1,3 @@
+Eftimoska, Cvetanka. Data Preprocessing for Machine Learning in Python Links to an external site.. Medium. Last modified April 20, 2020.
+Anello, Leonardo. A Detailed Pre-Processing Machine Learning with Python (+Notebook) Links to an external site.. LinkedIn Pulse. Last modified April 19, 2021.
+Jafari, Roy. Hands-On Data Preprocessing in Python Links to an external site.. Packt Publishing, 2022.
